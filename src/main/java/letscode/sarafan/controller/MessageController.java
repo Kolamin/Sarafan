@@ -14,8 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("message")
 public class MessageController {
-    private int counter = 4;
-
     private final MessageRepo messageRepo;
 
     @Autowired
@@ -35,22 +33,24 @@ public class MessageController {
         return message;
     }
 
-
     @PostMapping
     public Message create(@RequestBody Message message) {
-        message.setCreationDate( LocalDateTime.now() );
-        return messageRepo.save( message );
+        message.setCreationDate(LocalDateTime.now());
+        return messageRepo.save(message);
     }
 
     @PutMapping("{id}")
-    public Message update(@PathVariable("id") Message messageFromDb,
-                          @RequestBody Message message) {
-        BeanUtils.copyProperties( message, messageFromDb, "id" );
-        return messageRepo.save( messageFromDb );
+    public Message update(
+            @PathVariable("id") Message messageFromDb,
+            @RequestBody Message message
+    ) {
+        BeanUtils.copyProperties(message, messageFromDb, "id");
+
+        return messageRepo.save(messageFromDb);
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id") Message message) {
-        messageRepo.delete( message );
+        messageRepo.delete(message);
     }
 }
