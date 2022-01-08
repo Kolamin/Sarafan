@@ -13,6 +13,14 @@ module.exports = {
             'localhost:8080'
         ]
     },
+    stats: {
+        logging: 'error',
+        moduleAssets: false,
+        builtAt: false,
+        runtimeModules: false,
+        groupModulesByAttributes: false,
+        groupModulesByPath: false
+    },
     module: {
         rules: [
             {
